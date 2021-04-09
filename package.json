@@ -1,0 +1,9 @@
+{
+  "name": "jupiterbot",
+  "version": "0.0.1",
+  "description": "Just another Discord bot",
+  "main": "dist/index.js",
+  "repository": "git@github.com:kuskoman/Jupiterbot.git",
+  "author": "kkm <kubasurdej@gmail.com>",
+  "license": "MIT"
+}
