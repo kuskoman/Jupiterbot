@@ -5,10 +5,14 @@
   "main": "dist/index.js",
   "repository": "git@github.com:kuskoman/Jupiterbot.git",
   "author": "kkm <kubasurdej@gmail.com>",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "test": "jest",
     "build": "tsc"
+  },
+  "engines": {
+    "node": ">=15"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
@@ -23,6 +27,7 @@
     "@discordjs/opus": "^0.5.0",
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
+    "reflect-metadata": "^0.1.13",
     "winston": "^3.3.3"
   }
 }
