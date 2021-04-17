@@ -6,8 +6,8 @@ export interface Logger {
   error: (msg: string) => unknown;
 }
 
-export interface Constructor<T = unknown> {
-  new (...args: unknown[]): T;
+export interface Constructor<T> {
+  new (...args: any[]): T;
 }
 
-export type TypedClassDecorator<T> = (target: Constructor<T>) => T | void;
+export type TypedClassDecorator<T extends Function> = (target: Constructor<T>) => T | void;
