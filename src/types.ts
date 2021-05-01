@@ -1,10 +1,10 @@
-export interface Logger {
-  info: (msg: string) => unknown;
-  debug: (msg: string) => unknown;
-  http: (msg: string) => unknown;
-  warn: (msg: string) => unknown;
-  error: (msg: string) => unknown;
-}
+export type Logger = {
+  [K in LogLevel]: LogFunction;
+};
+
+export type LogLevel = "info" | "debug" | "http" | "warn" | "error";
+
+export type LogFunction = (msg: string, ctx?: string) => unknown;
 
 export interface Constructor<T> {
   new (...args: any[]): T;

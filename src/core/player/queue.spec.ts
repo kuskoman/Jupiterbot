@@ -120,6 +120,20 @@ describe(MusicQueue.name, () => {
       expect(queue.getAllSongs()).toStrictEqual(songs);
     });
   });
+
+  describe("addCurrentSong", () => {
+    it("should insert given song as current song, ignoring queued ones", () => {
+      const queue = new MusicQueue();
+      const [lastSong, currentSong] = [getSong(), getSong()];
+      queue.addSong(lastSong);
+      queue.getSong();
+
+      queue.addCurrentSong(currentSong);
+
+      expect(queue.getLastSong()).toBe(lastSong);
+      expect(queue.getCurrentSong()).toBe(currentSong);
+    });
+  });
 });
 
 const getSong = (): Song => {

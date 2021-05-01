@@ -11,6 +11,12 @@ export class MusicQueue {
     this.songList.push(song);
   }
 
+  /** sets song as first song, ignoring songList. can be used to instert song to first position */
+  public addCurrentSong(song: Song) {
+    this.lastSong = this.currentSong;
+    this.currentSong = song;
+  }
+
   /** removes one song from queue and returns it */
   public getSong(): Song | null {
     const song = this.songList.shift() || null;
@@ -29,6 +35,7 @@ export class MusicQueue {
     this.songList.splice(index, 1);
   }
 
+  /** indicates if there are songs to be played after current one */
   public isEmpty(): Boolean {
     return this.songList.length === 0;
   }
