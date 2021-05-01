@@ -10,32 +10,39 @@ export class Logger implements TLogger {
     transports: [new transports.Console()],
   });
 
-  constructor(private readonly name: string) {}
+  constructor(private readonly name: string, private readonly defaultCtx?: string) {}
 
   public info(msg: any, ctx?: any) {
-    return Logger.log("info", this.name, msg, "white", ctx);
+    return this.log("info", this.name, msg, "white", ctx);
   }
 
   public debug(msg: any, ctx?: any) {
-    return Logger.log("debug", this.name, msg, "magenta", ctx);
+    return this.log("debug", this.name, msg, "magenta", ctx);
   }
 
   public warn(msg: any, ctx?: any) {
-    return Logger.log("warn", this.name, msg, "yellow", ctx);
+    return this.log("warn", this.name, msg, "yellow", ctx);
   }
 
   public error(msg: any, ctx?: any) {
-    return Logger.log("error", this.name, msg, "red", ctx);
+    return this.log("error", this.name, msg, "red", ctx);
   }
 
   public http(msg: any, ctx?: any) {
-    return Logger.log("http", this.name, msg, "blue", ctx);
+    return this.log("http", this.name, msg, "blue", ctx);
   }
 
-  private static log(type: LogLevel, loggerName: string, msg: any, color: AvaiableColor, ctx?: any) {
-    const ctxString = ctx ? ` [${ctx}]` : "";
+  private log(type: LogLevel, loggerName: string, msg: any, color: AvaiableColor, ctx?: any) {
+    const ctxString = this.parseContext(ctx);
     const logString = `[${loggerName}]${ctxString} ${msg}`[color];
     Logger.logger[type](logString);
+  }
+
+  private parseContext(ctx?: any) {
+    const context = ctx || this.defaultCtx;
+    const ctxString = context ? ` [${context}]` : "";
+
+    return ctxString;
   }
 }
 
